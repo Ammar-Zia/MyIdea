@@ -10,16 +10,17 @@
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 #
 default: &default
-  adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
-  password: root
-  socket: /var/run/mysqld/mysqld.sock
+  
 
 development:
   <<: *default
   database: social_app_development
+  adapter: mysql2
+  username: root
+  password: root
+  socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -27,6 +28,10 @@ development:
 test:
   <<: *default
   database: social_app_test
+  adapter: mysql2
+  username: root
+  password: root
+  socket: /var/run/mysqld/mysqld.sock
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -50,5 +55,9 @@ test:
 production:
   <<: *default
   database: social_app_production
-  username: social_app
-  password: <%= ENV['SOCIAL_APP_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+#  username: root
+#  password: root
+#  socket: /var/run/mysqld/mysqld.sock
+#  username: social_app
+#  password: <%= ENV['SOCIAL_APP_DATABASE_PASSWORD'] %>
