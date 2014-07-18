@@ -1,5 +1,8 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  #load_and_authorize_resource
+  load_resource
+  authorize_resource
 
   # GET /ideas
   # GET /ideas.json
