@@ -6,4 +6,6 @@ class Idea < ActiveRecord::Base
 	validates_attachment_file_name :picture, :matches => [/png\Z/, /jpe?g\Z/]
 	# Explicitly do not validate
 	do_not_validate_attachment_file_type :picture
+
+	belongs_to :user
 end
