@@ -1,0 +1,29 @@
+<%= render("form") %>
+<div class="row">
+  <h1> 
+  <% if @action=="myideas" %>
+    My
+  <% end %>
+  Ideas </h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>User</th>
+        <th>Picture</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    <%= render(:partial => 'idea', :collection => @ideas) || 'No Ideas to Show' %>
+      <%# @ideas.each do |idea| %>
+        
+      <%# end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%#= link_to 'New Idea', new_idea_path %>
+</div>

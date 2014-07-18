@@ -10,20 +10,23 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+        
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.text_field :name,:class=>'form-control',:required=>true,  :placeholder => 'Idea Title' %>
+    </div>
+    <div class="col-md-9">
+      <%= f.text_field :description,:class=>'form-control',:required=>true,  :placeholder => 'Idea Description' %><br/>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :picture %><br>
-    <%= f.file_field :picture %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="row">
+    <div class="col-md-6">
+    </div>
+    <div class="col-md-3">
+      <%= f.file_field :picture,:class=>'form-control',:required=>true,  :placeholder => 'Picture' %><br/>
+    </div>
+    <div class="col-md-3">
+      <%= f.submit "Submit Idea",:class=>'btn btn-primary btn-block' %>
+    </div>
   </div>
 <% end %>

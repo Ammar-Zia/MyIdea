@@ -4,12 +4,22 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
+    @action='index'
     @ideas = Idea.all
+    @idea=Idea.new
   end
 
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+  end
+
+  def myideas
+    @action='myideas'
+    @ideas = Idea.where(:user=>current_user)
+    @idea=Idea.new
+    #redirect_to ideas_url
+    #render :index
   end
 
   # GET /ideas/new
@@ -28,7 +38,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
+        format.html { redirect_to request.referrer, notice: 'Idea was successfully created.' }
         format.json { render :show, status: :created, location: @idea }
       else
         format.html { render :new }
@@ -69,6 +79,7 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:name, :description, :picture)
+      params[:idea][:user_id]=current_user.id
+      params.require(:idea).permit(:name, :description, :picture, :user_id)
     end
 end
