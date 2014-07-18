@@ -13,8 +13,39 @@
  *= require_tree .
  *= require_self
  */
-body { padding-top: 100px; }
-footer { margin-top: 100px; }
+body { padding-top: 10em;}
+footer { background-color: black;}
 table, td, th { vertical-align: middle;}
 /*th { border-bottom: 1px solid #DDD; }
 img {max-width: 100px; max-height: 100px;}*/
+
+.my_form
+{ 
+	background-color: #fff;
+  	border: 1px solid #e5e5e5;
+  	-webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    /*height: 100%;*/
+    margin: 0 auto -5em; /* the bottom margin is the negative value of the footer's height */
+}
+footer, .push {
+	height: 5em;
+	clear: both;
+}
+footer p{
+	color:whitesmoke;
+	text-align: center;
+	margin-top: 2em;
+	opacity: 0.8;
+}
+html, body {
+	height: 100%;
+}
