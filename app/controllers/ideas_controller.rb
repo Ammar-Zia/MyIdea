@@ -1,5 +1,7 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :load_idea, only: :create
+
   #load_and_authorize_resource
   load_resource
   authorize_resource
@@ -84,5 +86,8 @@ class IdeasController < ApplicationController
     def idea_params
       params[:idea][:user_id]=current_user.id
       params.require(:idea).permit(:name, :description, :picture, :user_id)
+    end
+    def load_idea
+      @idea = Idea.new(idea_params)
     end
 end

@@ -1,4 +1,4 @@
-<tr>
+<!--<tr>
     <td><%= idea.name %></td>
     <td><%= idea.description %></td>
     <td><%= idea.user.email %></td>
@@ -6,5 +6,28 @@
 
 	<!--<td><%= link_to 'Show', idea %></td>
     <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
-    <td><%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-</tr>
+    <td><%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>-->
+<div class="idea_container" >
+    <div class="navbar navbar-static">
+        <div class="navbar-inner">
+            <ul class="nav pull-right">
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-chevron-down"></a>
+                    <ul class="dropdown-menu">
+                        <li><%= link_to raw('<span class="glyphicon glyphicon-edit"> Edit'), edit_idea_path(idea) if can? :edit, idea %></li>
+                        <li><%= link_to raw('<span class="glyphicon glyphicon-remove"> Delete'), idea, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, idea %></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+	<p class="user_name_disp"><%= idea.user.email+"(at "+idea.created_at.to_s+"):" %></p>
+	<h3><%= idea.name %></h3>
+	<div class="pic_frame">
+		<%= link_to image_tag(asset_path(idea.picture.url(:medium))), asset_path(idea.picture.url), :popup=>['original_image', 'height=700,width=900'] %> 
+	</div>
+	<p class="idea_desc"><%= idea.description %></p>
+
+</div>
