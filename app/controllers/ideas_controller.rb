@@ -10,7 +10,7 @@ class IdeasController < ApplicationController
   # GET /ideas.json
   def index
     @action='index'
-    @ideas = Idea.all
+    @ideas = Idea.all.order(created_at: :desc)
     @idea=Idea.new
   end
 
@@ -21,7 +21,7 @@ class IdeasController < ApplicationController
 
   def myideas
     @action='myideas'
-    @ideas = Idea.where(:user=>current_user)
+    @ideas = Idea.where(:user=>current_user).order(created_at: :desc)
     @idea=Idea.new
     #redirect_to ideas_url
     #render :index
@@ -57,7 +57,7 @@ class IdeasController < ApplicationController
   def update
     respond_to do |format|
       if @idea.update(idea_params)
-        format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
+        format.html { redirect_to ideas_url, notice: 'Idea was successfully updated.' }
         format.json { render :show, status: :ok, location: @idea }
       else
         format.html { render :edit }

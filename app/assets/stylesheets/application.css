@@ -34,7 +34,7 @@ img {max-width: 100px; max-height: 100px;}*/
     min-height: 100%;
     height: auto !important;
     /*height: 100%;*/
-    margin: 0 auto -5em; /* the bottom margin is the negative value of the footer's height */
+    margin: 0 auto -2.85em; /* the bottom margin is the negative value of the footer's height */
     margin-top: -30px;
     font-family: verdana;
 }
@@ -86,4 +86,7 @@ html, body {
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
+}
+.nav>li>a:hover, .open>a, .open>a:hover, .open>a:focus, .nav>li>a:focus {
+  background-color: transparent !important;
 }
