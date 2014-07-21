@@ -23,6 +23,11 @@
   <% if alert %>
     <p class="alert alert-danger"><%= alert %></p>
   <% end %>
+   <% if devise_error_messages! != nil %>
+    <% devise_error_messages!.each do |key, value| %>
+       <p class="alert alert-danger"><%= value %></p>
+    <% end %>
+  <% end %>
 
   <div class="container">
     <%= yield %>

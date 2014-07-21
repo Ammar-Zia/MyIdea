@@ -14,6 +14,16 @@ class IdeasController < ApplicationController
     @idea=Idea.new
   end
 
+  def search
+    substr=params[:substr]
+    @action='search'
+    t = Idea.arel_table
+    @ideas=Idea.where(t[:description].matches("%#{substr}%"))
+    #@ideas = Idea.where("lower(description) like ?", "%#{substr.downcase}%").order(created_at: :desc)
+    @idea=Idea.new
+    render "index.html.erb"
+  end
+
   # GET /ideas/1
   # GET /ideas/1.json
   def show

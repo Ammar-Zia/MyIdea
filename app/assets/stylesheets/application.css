@@ -90,3 +90,24 @@ html, body {
 .nav>li>a:hover, .open>a, .open>a:hover, .open>a:focus, .nav>li>a:focus {
   background-color: transparent !important;
 }
+.new_user .field_with_errors {
+  display: block; 
+}
+.idea_desc, .idea_container h3
+{
+  font-family: cursive;
+}
+.idea_desc{
+  margin: 15px;
+}
+
+.navbar .navbar-form{
+    padding: 0 15px;
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+.navbar .navbar-form .input-group{
+  
+    width:100%;
+}

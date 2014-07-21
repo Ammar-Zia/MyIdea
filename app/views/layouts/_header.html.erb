@@ -9,15 +9,29 @@
         </button>
         <a class="navbar-brand" href="/" style="padding-bottom: 0px; padding-top: 10px;"><p><img style="height: 30px;width: 30px;margin-right: 3px;" src="<%= asset_path('idea_logo.jpeg') %>" alt="Logo"/>MyIdea</p></a>
       </div>
+
       <div class="collapse navbar-collapse">
        <% if user_signed_in? %>
         <ul class="nav navbar-nav">
           <li class="<%= if @action=='index' then "active" end %>"><a href="/ideas">Ideas</a></li>
           <li class="<%= if @action=='myideas' then "active" end %>"><a href="/myideas">My Ideas</a></li>
         </ul>
+
+      <div class="col-md-5 ">
+        <form class="navbar-form" role="search" action="search">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="substr" id="srch-term">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+          </div>
+        </form>
+      </div>
       <% end %>
+
         <p class="navbar-text pull-right">
   		<% if user_signed_in? %>
+
   		  Logged in as <strong><%= current_user.email %></strong>.
   		  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
   		  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>

@@ -54,6 +54,8 @@ en:
       expired: "has expired, please request a new one"
       not_found: "not found"
       not_locked: "was not locked"
+      taken: "User with same email already exists. Please try with another email address."
+      confirmation: "Passwords don't match. Please try again."
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"

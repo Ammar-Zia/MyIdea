@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'ideas#index'
   get 'myideas'=>'ideas#myideas'
+  get 'search'=> 'ideas#search'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
