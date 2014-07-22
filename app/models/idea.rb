@@ -8,4 +8,12 @@ class Idea < ActiveRecord::Base
 	do_not_validate_attachment_file_type :picture
 
 	belongs_to :user
+
+
+	def self.search_ideas substr
+		t = arel_table
+    	where(t[:description].matches("%#{substr}%")).order(created_at: :desc)
+    	#@ideas = Idea.where("lower(description) like ?", "%#{substr.downcase}%").order(created_at: :desc)
+	end
+
 end
