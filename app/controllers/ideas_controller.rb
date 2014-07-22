@@ -1,6 +1,7 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  #before_action :set_idea, only: [:show, :edit, :update, :destroy]
   before_action :load_idea, only: :create
+  before_action :set_new_idea, only: [:index, :myideas, :search]
 
   #load_and_authorize_resource
   load_resource
@@ -11,17 +12,19 @@ class IdeasController < ApplicationController
   def index
     @action='index'
     @ideas = Idea.all.order(created_at: :desc)
-    @idea=Idea.new
   end
 
   def search
     substr=params[:substr]
     @action='search'
     t = Idea.arel_table
-    @ideas=Idea.where(t[:description].matches("%#{substr}%"))
+    @ideas=Idea.where(t[:description].matches("%#{substr}%")).order(created_at: :desc)
     #@ideas = Idea.where("lower(description) like ?", "%#{substr.downcase}%").order(created_at: :desc)
-    @idea=Idea.new
-    render "index.html.erb"
+
+    respond_to do |format|
+      format.html { render :index }
+    end
+    
   end
 
   # GET /ideas/1
@@ -32,9 +35,7 @@ class IdeasController < ApplicationController
   def myideas
     @action='myideas'
     @ideas = Idea.where(:user=>current_user).order(created_at: :desc)
-    @idea=Idea.new
-    #redirect_to ideas_url
-    #render :index
+    
   end
 
   # GET /ideas/new
@@ -49,7 +50,7 @@ class IdeasController < ApplicationController
   # POST /ideas
   # POST /ideas.json
   def create
-    @idea = Idea.new(idea_params)
+    @idea = current_user.ideas.new(idea_params)
 
     respond_to do |format|
       if @idea.save
@@ -91,13 +92,16 @@ class IdeasController < ApplicationController
     def set_idea
       @idea = Idea.find(params[:id])
     end
+    def set_new_idea
+      @idea = Idea.new
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params[:idea][:user_id]=current_user.id
+      #params[:idea][:user_id]=current_user.id
       params.require(:idea).permit(:name, :description, :picture, :user_id)
     end
     def load_idea
-      @idea = Idea.new(idea_params)
+      @idea = current_user.ideas.new(idea_params)
     end
 end
