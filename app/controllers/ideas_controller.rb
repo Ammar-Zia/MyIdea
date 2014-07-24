@@ -31,8 +31,8 @@ class IdeasController < ApplicationController
 
   def myideas
     @action='myideas'
-    @ideas = Idea.where(:user=>current_user).order(created_at: :desc)
-
+    #@ideas = Idea.where(:user=>current_user).order(created_at: :desc)
+    @ideas = current_user.ideas.order(created_at: :desc)
     respond_to do |format|
       format.html { render :index }
     end
@@ -81,10 +81,14 @@ class IdeasController < ApplicationController
   # DELETE /ideas/1
   # DELETE /ideas/1.json
   def destroy
-    @idea.destroy
     respond_to do |format|
-      format.html { redirect_to ideas_url, notice: 'Idea was successfully destroyed.' }
-      format.json { head :no_content }
+      if @idea.destroy
+        format.html { redirect_to ideas_url, notice: 'Idea was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { render referrer, notice: 'Idea could not be destroyed'}
+        format.json { render json: @idea.errors, status: :unprocessable_entity }
+      end
     end
   end
 
