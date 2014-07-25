@@ -1,13 +1,7 @@
 <%= render("form") %>
 <div class="row">
   
-  <h1>
-  <% if @action=="search" %>
-  Searched 
-  <% elsif @action=="myideas" %>
-    My
-  <% end %>
-  Ideas </h1>
+  <h1> <%= getIndexViewTitle params[:action] %></h1>
   
 
     <%= render(:partial => 'idea', :collection => @ideas) || 'No Ideas to Show' %>

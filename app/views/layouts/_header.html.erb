@@ -13,8 +13,8 @@
       <div class="collapse navbar-collapse">
        <% if user_signed_in? %>
         <ul class="nav navbar-nav">
-          <li class="<%= if @action=='index' then "active" end %>"><a href="/ideas">Ideas</a></li>
-          <li class="<%= if @action=='myideas' then "active" end %>"><a href="/myideas">My Ideas</a></li>
+          <li class="<%= if params[:action]=='index' then "active" end %>"><a href="/ideas">Ideas</a></li>
+          <li class="<%= if params[:action]=='myideas' then "active" end %>"><a href="/myideas">My Ideas</a></li>
         </ul>
 
       <div class="col-md-5 ">

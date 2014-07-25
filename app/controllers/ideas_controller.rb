@@ -3,19 +3,17 @@ class IdeasController < ApplicationController
   before_action :load_idea, only: :create #work around for cancan bug
   before_action :set_new_idea, only: [:index, :myideas, :search, :new]
 
-  #load_and_authorize_resource
-  load_resource
-  authorize_resource
+  load_and_authorize_resource
+  #load_resource
+  #authorize_resource
 
   # GET /ideas
   # GET /ideas.json
   def index
-    @action='index'
-    @ideas = Idea.all.order(created_at: :desc)
+   @ideas=@ideas.order_desc
   end
 
   def search
-    @action='search'
     @ideas=Idea.search_ideas params[:substr]
 
     respond_to do |format|
@@ -30,9 +28,7 @@ class IdeasController < ApplicationController
   end
 
   def myideas
-    @action='myideas'
-    #@ideas = Idea.where(:user=>current_user).order(created_at: :desc)
-    @ideas = current_user.ideas.order(created_at: :desc)
+    @ideas = current_user.ideas.order_desc
     respond_to do |format|
       format.html { render :index }
     end
